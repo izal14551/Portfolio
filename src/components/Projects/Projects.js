@@ -31,7 +31,7 @@ function Projects() {
   const [showEditModal, setShowEditModal] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://backend-production-0f24.up.railway.app/api/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, [success]);
@@ -62,10 +62,13 @@ function Projects() {
     data.append("description", form.description);
     if (form.imgFile) data.append("imgFile", form.imgFile);
 
-    const res = await fetch("http://localhost:5000/api/projects", {
-      method: "POST",
-      body: data
-    });
+    const res = await fetch(
+      "https://backend-production-0f24.up.railway.app/api/projects",
+      {
+        method: "POST",
+        body: data
+      }
+    );
     if (res.ok) {
       setSuccess(true);
       setForm({ title: "", description: "", imgFile: null });
@@ -76,9 +79,12 @@ function Projects() {
 
   // Hapus project
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/projects/${id}`, {
-      method: "DELETE"
-    });
+    await fetch(
+      `https://backend-production-0f24.up.railway.app/api/projects/${id}`,
+      {
+        method: "DELETE"
+      }
+    );
     setSuccess((s) => !s); // trigger reload
   };
 
@@ -102,10 +108,13 @@ function Projects() {
     data.append("description", editForm.description);
     if (editForm.imgFile) data.append("imgFile", editForm.imgFile);
 
-    await fetch(`http://localhost:5000/api/projects/${id}`, {
-      method: "PUT",
-      body: data
-    });
+    await fetch(
+      `https://backend-production-0f24.up.railway.app/api/projects/${id}`,
+      {
+        method: "PUT",
+        body: data
+      }
+    );
     setShowEditModal(false);
     setSuccess((s) => !s); // trigger reload
   };

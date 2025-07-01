@@ -18,7 +18,7 @@ function ProjectCards({ imgPath, title, description, onEdit, onDelete }) {
     >
       <Card.Img
         variant="top"
-        src={`http://localhost:5000${imgPath}`}
+        src={`https://backend-production-0f24.up.railway.app${imgPath}`}
         alt={title}
         style={{
           height: "200px",

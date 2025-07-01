@@ -11,7 +11,7 @@ function Contact() {
 
   // Ambil pesan dari backend saat komponen mount
   useEffect(() => {
-    fetch("http://localhost:5000/api/messages")
+    fetch("https://backend-production-0f24.up.railway.app/api/messages")
       .then((res) => res.json())
       .then((data) => setMessages(data.reverse())) // reverse agar terbaru di atas
       .catch(() => setMessages([]));
@@ -25,11 +25,14 @@ function Contact() {
     setError("");
     setSuccess(false);
     try {
-      const res = await fetch("http://localhost:5000/api/messages", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
-      });
+      const res = await fetch(
+        "https://backend-production-0f24.up.railway.app/api/messages",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form)
+        }
+      );
       if (res.ok) {
         setSuccess(true);
         setForm({ name: "", email: "", message: "" });
@@ -124,9 +127,12 @@ function Contact() {
                     variant="danger"
                     size="sm"
                     onClick={async () => {
-                      await fetch(`http://localhost:5000/api/messages/${idx}`, {
-                        method: "DELETE"
-                      });
+                      await fetch(
+                        `https://backend-production-0f24.up.railway.app/api/messages/${idx}`,
+                        {
+                          method: "DELETE"
+                        }
+                      );
                       setMessages((prev) => prev.filter((_, i) => i !== idx));
                     }}
                     style={{ marginTop: 10 }}
